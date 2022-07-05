@@ -247,9 +247,9 @@ public class Library {
 //        Feature_04(Hash);
 //        Feature_05(Hash);
 //        Feature_06(Hash);
-//        TestPerformance(Hash);
+        TestPerformance(Hash);
 //        Feature_08(Hash);
-        Feature_09(Hash);
+//        Feature_09(Hash);
         
     }
 }
