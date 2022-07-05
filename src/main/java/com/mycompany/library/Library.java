@@ -7,7 +7,6 @@ package com.mycompany.library;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.security.DrbgParameters;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +32,7 @@ public class Library {
     {
     HashMap<String, String> Hash = new HashMap<>();
     String line;
+    long StartTime = System.nanoTime();
     try (BufferedReader reader = new BufferedReader(new FileReader(URL))) {
         while ((line = reader.readLine()) != null) {
             String[] keyValuePair = line.split("`", 2);
@@ -51,6 +51,8 @@ public class Library {
     } catch (IOException e) {
         e.printStackTrace();
     }
+    long EndTime = System.nanoTime();
+        System.out.println("Time run fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
     return Hash;
     }
     
@@ -225,6 +227,45 @@ public class Library {
             System.out.println("The correct answer is : " + KeyToValue(Hash, keyList.get(randomInt)));
         }
     }
+    public static void Feature_10(HashMap<String,String>Hash)
+    {
+     Random generator = new Random();
+        int randomInt = generator.nextInt(7662) + 1;//num of Hash
+        int randomInt01 = generator.nextInt(7662) + 1;
+        int randomInt02 = generator.nextInt(7662) + 1;
+        int randomInt03 = generator.nextInt(7662) + 1;
+        
+        Set<String> keySet = Hash.keySet();
+        List<String> keyList = new ArrayList<>(keySet);
+        List<String> Bucket = new ArrayList<>();
+        
+        
+        Bucket.add(keyList.get(randomInt));
+        Bucket.add(keyList.get(randomInt01));
+        Bucket.add(keyList.get(randomInt02));
+        Bucket.add(keyList.get(randomInt03));
+
+        System.out.println("Choice a key of the word : " + KeyToValue(Hash,keyList.get(randomInt)));
+        
+        Collections.shuffle(Bucket);
+ 
+        System.out.println("1-"+ Bucket.get(0));
+        System.out.println("2-" + Bucket.get(1));
+        System.out.println("3-"+ Bucket.get(2));
+        System.out.println("4-"+ Bucket.get(3));
+        
+        
+        System.out.println("Please choice : ");
+        Scanner sc = new Scanner(System.in);
+        int Choice = Integer.parseInt(sc.nextLine());
+         System.out.println("You're choice : "+Bucket.get(Choice-1));
+        if (Bucket.get(Choice-1)== keyList.get(randomInt))
+            System.out.println("You're Right !!!");
+        else
+            System.out.println("You're Wrong!!!");
+            
+        System.out.println("The correct answer is : " + keyList.get(randomInt));
+    }
     
     
         public static void TestPerformance(HashMap<String, String> Hash) {
@@ -247,9 +288,10 @@ public class Library {
 //        Feature_04(Hash);
 //        Feature_05(Hash);
 //        Feature_06(Hash);
-        TestPerformance(Hash);
+//        TestPerformance(Hash);
 //        Feature_08(Hash);
 //        Feature_09(Hash);
+//        Feature_10(Hash);
         
     }
 }
