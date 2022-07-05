@@ -316,9 +316,66 @@ public class Library {
     
     
     public static void main(String[] args) {
-        HashMap<String,String> Hash = Feature_07("slang.txt", DupKeyOption.OVERWRITE);//7662
+         HashMap<String,String> Hash = Feature_07("slang.txt", DupKeyOption.OVERWRITE);//7662
 //        ShowMap(Hash);
-//        List<String> History = new ArrayList<String>();
+        List<String> History = new ArrayList<String>();
+        Scanner sc = new Scanner(System.in);
+		boolean cont = true;
+		do {
+			System.out.println("Press select feature : [1-10], press 0 to show all key and value : ");
+			int SelectFeature = sc.nextInt();
+			switch (SelectFeature) {
+                        case 0:
+                            ShowMap(Hash);
+                            break;
+			case 1:
+				System.out.println("Run Feature 1 : ");
+                                Feature_01(History, Hash);
+				break;
+			case 2:
+				System.out.println("Run Feature 2 : ");
+                                Feature_02(History, Hash);
+				break;
+			case 3:
+				System.out.println("Run Feature 3 : ");
+                                Feature_03(History, Hash);
+				break;
+                        case 4:
+				System.out.println("Run Feature 4 : ");
+                                Feature_04(Hash);
+				break;
+                        case 5:
+				System.out.println("Run Feature 5 : ");
+                                Feature_05(Hash);
+                                break;
+                        case 6:
+				System.out.println("Run Feature 6 : ");
+                                Feature_06(Hash);
+                                break;
+                        case 7:
+				System.out.println("Run Feature 7 : ");
+                                Hash = Feature_07("slang.txt", DupKeyOption.OVERWRITE);//7662
+                                break;
+                        case 8:
+				System.out.println("Run Feature 8 : ");
+                                Feature_08(Hash);
+                                break;
+                        case 9:
+				System.out.println("Run Feature 9 : ");
+                                Feature_09(Hash);
+                                break;
+                        case 10:
+				System.out.println("Run Feature 10 : ");
+                                Feature_10(Hash);
+                                break;
+			default:
+				System.out.println("Done !!!");
+				cont = false;
+				break;
+			}
+		} while (cont);
+	}
+
 //        Feature_01(History, Hash);
 //        Feature_02(History, Hash);
 //        Feature_03(History, Hash);
@@ -331,4 +388,3 @@ public class Library {
 //        Feature_10(Hash);
         
     }
-}
