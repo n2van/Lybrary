@@ -317,7 +317,7 @@ public class Library {
     
     public static void main(String[] args) {
          HashMap<String,String> Hash = Feature_07("slang.txt", DupKeyOption.OVERWRITE);//7662
-//        ShowMap(Hash);
+        ShowMap(Hash);
         List<String> History = new ArrayList<String>();
         Scanner sc = new Scanner(System.in);
 		boolean cont = true;
