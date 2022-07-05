@@ -52,7 +52,7 @@ public class Library {
         e.printStackTrace();
     }
     long EndTime = System.nanoTime();
-        System.out.println("Time run fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
+        System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
     return Hash;
     }
     
@@ -112,23 +112,33 @@ public class Library {
     }
     public static void Feature_01(List<String>His,HashMap<String,String>Hash)
     {
+
         String Key = InputKey();
+        long StartTime = System.nanoTime();
         His.add(Key);
         SearchKey(Hash, Key);
+        long EndTime = System.nanoTime();
+        System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
     }
     public static void Feature_02(List<String>His,HashMap<String,String>Hash)
     {
         List<String> ListKey = new ArrayList<String>();
         ListKey = InputListKey();
+        long StartTime = System.nanoTime();
         His.addAll(ListKey);
         SearchListKey(Hash, ListKey);
+        long EndTime = System.nanoTime();
+        System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
     }
     public static void Feature_03(List<String>His,HashMap<String,String>Hash)
     {
+        long StartTime = System.nanoTime();
         System.out.println("Slang Words History"); 
         System.out.println(His);
         System.out.println("Value it :");
         SearchListKey(Hash, His);
+        long EndTime = System.nanoTime();
+        System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
     }
     
     public static void Feature_04(HashMap<String,String>Hash)
@@ -136,30 +146,40 @@ public class Library {
         System.out.println("Add New Slang Words");
         String key = InputKey();
         String value = InputValue();
+        long StartTime = System.nanoTime();
         Hash.put(key, value);
-         System.out.println("Add Success !");
+        System.out.println("Add Success !");
+        long EndTime = System.nanoTime();
+        System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
     }
     
     public static void Feature_05(HashMap<String,String>Hash)
-    {
+    {  
          System.out.println("Edit Slang Words");
          String key = InputKey();
+         long StartTime = System.nanoTime();
          if (!Hash.containsKey(key))
-         {
              System.out.println("Key not contain, Error !!! ");
-             return ;
+         else
+         {
+            String value = InputValue();
+            StartTime = System.nanoTime();
+            Hash.replace(key, value);
+            System.out.println("Edit Success !");
          }
-         String value = InputValue();
-         Hash.replace(key, value);
-         System.out.println("Edit Success !");
+         long EndTime = System.nanoTime();
+         System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
     }
     public static void Feature_06(HashMap<String,String>Hash)
     {
          System.out.println("Remove Slang Words");
          String key = InputKey();
+         long StartTime = System.nanoTime();
          if (!Hash.containsKey(key))
          {
              System.out.println("Key not contain, Error !!! ");
+             long EndTime = System.nanoTime();
+             System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
              return ;
          }
          boolean Confirm = false;
@@ -167,6 +187,7 @@ public class Library {
          System.out.println("If you are sure, press type input 'true', else press type 'false'");
          Scanner sc = new Scanner(System.in);
          Confirm = sc.nextBoolean();
+         StartTime = System.nanoTime();
          if(Confirm==false)
          {
              System.out.println("No change, complete !");
@@ -174,21 +195,26 @@ public class Library {
          }
          Hash.remove(key);
          System.out.println("Remove Success !");
+         long EndTime = System.nanoTime();
+         System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
          
     }
     public static void Feature_08(HashMap<String,String>Hash)
     {
-      
+        long StartTime = System.nanoTime();
         Random generator = new Random();
         int randomInt = generator.nextInt(7662) + 1;//num of Hash
         Set<String> keySet = Hash.keySet();
         List<String> keyList = new ArrayList<>(keySet);
         String randomKey = keyList.get(randomInt);
         SearchKey(Hash, randomKey);
+        long EndTime = System.nanoTime();
+        System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
         
     }
     public static void Feature_09(HashMap<String,String>Hash)
     {
+        long StartTime = System.nanoTime();
         Random generator = new Random();
         int randomInt = generator.nextInt(7662) + 1;//num of Hash
         int randomInt01 = generator.nextInt(7662) + 1;
@@ -214,10 +240,12 @@ public class Library {
         System.out.println("3-"+ Bucket.get(2));
         System.out.println("4-"+ Bucket.get(3));
         
+        long tempTime = System.nanoTime() - StartTime;
         
         System.out.println("Please choice : ");
         Scanner sc = new Scanner(System.in);
         int Choice = Integer.parseInt(sc.nextLine());
+        StartTime = System.nanoTime();
          System.out.println("You're choice : "+Bucket.get(Choice-1));
         if (Bucket.get(Choice-1)== KeyToValue(Hash,keyList.get(randomInt)))
             System.out.println("You're Right !!!");
@@ -226,10 +254,13 @@ public class Library {
             System.out.println("You're Wrong!!!");
             System.out.println("The correct answer is : " + KeyToValue(Hash, keyList.get(randomInt)));
         }
+        long EndTime = System.nanoTime();
+        System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime+tempTime)/1000000);
     }
     public static void Feature_10(HashMap<String,String>Hash)
     {
-     Random generator = new Random();
+        long StartTime = System.nanoTime();
+        Random generator = new Random();
         int randomInt = generator.nextInt(7662) + 1;//num of Hash
         int randomInt01 = generator.nextInt(7662) + 1;
         int randomInt02 = generator.nextInt(7662) + 1;
@@ -254,27 +285,33 @@ public class Library {
         System.out.println("3-"+ Bucket.get(2));
         System.out.println("4-"+ Bucket.get(3));
         
-        
+        long tempTime = System.nanoTime() - StartTime;
         System.out.println("Please choice : ");
         Scanner sc = new Scanner(System.in);
         int Choice = Integer.parseInt(sc.nextLine());
-         System.out.println("You're choice : "+Bucket.get(Choice-1));
+        StartTime = System.nanoTime();
+        System.out.println("You're choice : "+Bucket.get(Choice-1));
         if (Bucket.get(Choice-1)== keyList.get(randomInt))
             System.out.println("You're Right !!!");
         else
             System.out.println("You're Wrong!!!");
             
         System.out.println("The correct answer is : " + keyList.get(randomInt));
+        long EndTime = System.nanoTime();
+         System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime+tempTime)/1000000);
     }
     
     
         public static void TestPerformance(HashMap<String, String> Hash) {
+        long StartTime = System.nanoTime();
         Set<String> keySet = Hash.keySet();
-           for (int i =0;i<100;i++){
-        for (String key : keySet) {
-            SearchKey(Hash, key);
-         }
+        for (int i =0;i<100;i++)
+        {
+            for (String key : keySet) 
+             SearchKey(Hash, key);
         }
+        long EndTime = System.nanoTime();
+        System.out.println("Runtime fuction(milliseconds) : "+(EndTime-StartTime)/1000000);
     }
     
     
